@@ -15,7 +15,7 @@ public class Main {
     public Main() throws IOException {
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
 
         File dirWar=new File("c:\\java\\war");
         dirWar.mkdir();
@@ -92,32 +92,20 @@ public class Main {
             }
         }
 
-
-        //System.out.println(arrtext);
         reader3.close();
-       // arrtext.sort();                                    прописать компаратор
-
-       // System.out.println(arrtext);
 
         HashMap<String,Integer> mapTxt = new HashMap();
         for (String unit: arrtext) {
             if (mapTxt.containsKey(unit)) {mapTxt.replace(unit,mapTxt.get(unit)+1);} else {mapTxt.put(unit,1);}
 
         }
-        //System.out.println(mapTxt);
-     //   System.out.println(mapTxt.size());
 
-     //   System.out.println(arrYear);
         TreeSet<Integer> sortYear = new TreeSet<>();
         for (String unit: arrYear) {
             if (unit.length()==4 ) {
             if (Integer.parseInt(unit)>1200) {sortYear.add(Integer.parseInt(unit));}}
 
         }
-
-        System.out.println(sortYear);
-
-
 
         //вывод в файл
 
@@ -151,12 +139,25 @@ public class Main {
         writer.write("most unusual word: ");
         writer.write(kMin+":" + vMin + " bits \n");
         writer.write("Longest word: " + wLong + " - " + wLong.length() + " chars");
-
-
         writer.close();
 
+Heroes pierBezuhov =new Heroes("Pier","Bezuhov", 22,"male",10);
+Heroes andrBolkonski =new Heroes("Andrey","Bolkonski", 27,"male",11);
+Heroes natRostova = new Heroes("Natasha", "Rostova", 18,"female",19);
 
+        ObjectOutputStream objectOutputStream=new ObjectOutputStream(new FileOutputStream("c:\\java\\war\\aboutWar-heroes.txt"));
+        objectOutputStream.writeObject(pierBezuhov);
+        objectOutputStream.writeObject(andrBolkonski);
+        objectOutputStream.writeObject(natRostova);
 
+        ObjectInputStream objectInputStream=new ObjectInputStream(new FileInputStream("c:\\java\\war\\aboutWar-heroes.txt"));
+        Heroes pierResored = (Heroes) objectInputStream.readObject();
+        Heroes andrResored = (Heroes) objectInputStream.readObject();
+        Heroes natResored = (Heroes) objectInputStream.readObject();
+
+        System.out.println(pierResored);
+        System.out.println(andrResored);
+        System.out.println(natResored);
 
 
     } // psvm
@@ -175,3 +176,30 @@ public class Main {
         bis.close();
     }
 } //Main
+
+class Heroes implements Serializable{
+    String name;
+    String surname;
+    int age;
+    String sex;
+    int page;
+
+    public Heroes(String name, String surname, int age, String sex, int page) {
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+        this.sex = sex;
+        this.page = page;
+    }
+
+    @Override
+    public String toString() {
+        return "Heroes{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", age=" + age +
+                ", sex='" + sex + '\'' +
+                ", page=" + page +
+                '}';
+    }
+}
