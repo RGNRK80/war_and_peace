@@ -93,7 +93,7 @@ public class Main {
         }
 
 
-        //System.out.println(builder.toString());
+        //System.out.println(arrtext);
         reader3.close();
        // arrtext.sort();                                    прописать компаратор
 
@@ -104,7 +104,7 @@ public class Main {
             if (mapTxt.containsKey(unit)) {mapTxt.replace(unit,mapTxt.get(unit)+1);} else {mapTxt.put(unit,1);}
 
         }
-     //   System.out.println(mapTxt);
+        //System.out.println(mapTxt);
      //   System.out.println(mapTxt.size());
 
      //   System.out.println(arrYear);
@@ -116,6 +116,48 @@ public class Main {
         }
 
         System.out.println(sortYear);
+
+
+
+        //вывод в файл
+
+        File aboutWar = new File("c:\\java\\war\\aboutWar.txt");
+        aboutWar.createNewFile();
+        FileWriter writer = new FileWriter("c:\\java\\war\\aboutWar.txt");
+        writer.write(" Something about book War&Peace: \n" );
+        writer.write(" Using years:  ");
+        sortYear.stream().forEach(s-> {
+            try {
+                writer.write(s+" ");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        writer.write("\n");
+        writer.write("most usual word: ");
+
+        String kMin="";
+        String kMax="";
+        int vMin=100;
+        int vMax=0;
+        String wLong="";
+
+        for (String unit: mapTxt.keySet()) {
+            if (mapTxt.get(unit)>=vMax) {vMax=mapTxt.get(unit); kMax=unit;}
+            if (mapTxt.get(unit)<=vMin) {vMin=mapTxt.get(unit); kMin=unit;}
+            if (unit.length()>=wLong.length()) {wLong=unit;}
+        }
+        writer.write(kMax+":" + vMax + " bits \n");
+        writer.write("most unusual word: ");
+        writer.write(kMin+":" + vMin + " bits \n");
+        writer.write("Longest word: " + wLong + " - " + wLong.length() + " chars");
+
+
+        writer.close();
+
+
+
+
 
     } // psvm
 
