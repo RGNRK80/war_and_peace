@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.TreeSet;
 
 
-//предусмотреть создание каталога с файлом
+
 
 public class Main {
     public Main() throws IOException {
@@ -17,7 +17,10 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        File file = new File("f:\\java\\war\\war.txt");
+        File dirWar=new File("c:\\java\\war");
+        dirWar.mkdir();
+
+        File file = new File("c:\\java\\war\\war.txt");
         String url = "https://vk.com/doc354539244_619263533";
         try {
            downloadUsingStream(url, file.getAbsolutePath());
@@ -51,7 +54,7 @@ public class Main {
 
         ArrayList<String>  arrtext = new ArrayList<>();  // имеем полный список слов
         ArrayList<String>  arrYear = new ArrayList<>();  // имеем полный список дат
-        FileReader reader2 = new FileReader("f:\\java\\war\\war.txt");
+        FileReader reader2 = new FileReader("c:\\java\\war\\war.txt");
         StringBuilder builder = new StringBuilder();
         int c;
 
@@ -71,7 +74,7 @@ public class Main {
         }
         reader2.close();
 
-        FileReader reader3 = new FileReader("f:\\java\\war\\war.txt");
+        FileReader reader3 = new FileReader("c:\\java\\war\\war.txt");
         StringBuilder builder3 = new StringBuilder();
 
         counter=0;
