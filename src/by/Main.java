@@ -41,14 +41,10 @@ public class Main {
             result.append((char) i);
         }
         fileInputStream.close();
-/*
-
 
         // rezult - переменная с текстом война и мир
 
-        /*System.out.println(result);
-        String[] rezz= result.toString().split(" ");
-        System.out.println(rezz[5]); */
+       */
 
         // 2  чтения текстовой информации, сразу читает текст, в отличие от потока
 
@@ -94,10 +90,6 @@ public class Main {
         }
 
 
-
-
-
-
         //System.out.println(builder.toString());
         reader3.close();
        // arrtext.sort();                                    прописать компаратор
@@ -121,20 +113,6 @@ public class Main {
         }
 
         System.out.println(sortYear);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     } // psvm
 
