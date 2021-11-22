@@ -120,7 +120,7 @@ public class Main {
         URL url = new URL(urlStr);
         BufferedInputStream bis = new BufferedInputStream(url.openStream());
         FileOutputStream fis = new FileOutputStream(file);
-        byte[] buffer = new byte[1024];
+        byte[] buffer = new byte[1024];                                 // записать посимвольно
         int count=0;
         while((count = bis.read(buffer,0,1024)) != -1)
         {
