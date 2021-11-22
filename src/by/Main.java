@@ -21,9 +21,9 @@ public class Main {
             e.printStackTrace();
         }
 
-        // 1
+        // 1  чтение байтовой информации
 
-
+/*
         FileInputStream fileInputStream = new FileInputStream("f:\\java\\war\\war.txt");
         System.out.printf("File size: %d bytes \n", fileInputStream.available());
 
@@ -37,14 +37,26 @@ public class Main {
             result.append((char) i);
         }
         fileInputStream.close();
+/*
+
 
         // rezult - переменная с текстом война и мир
 
-        System.out.println(result);
+        /*System.out.println(result);
         String[] rezz= result.toString().split(" ");
-        System.out.println(rezz[5]);
+        System.out.println(rezz[5]); */
+
+        // 2  чтения текстовой информации, сразу читает текст, в отличие от потока
 
 
+        FileReader reader2 = new FileReader("f:\\java\\war\\war.txt");
+        StringBuilder builder = new StringBuilder();
+        int c;
+        while ((c = reader2.read()) != -1) {
+            builder.append((char) c);
+        }
+        System.out.println(builder.toString());
+        reader2.close();
 
 
 
