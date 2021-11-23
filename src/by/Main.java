@@ -17,10 +17,14 @@ public class Main {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
 
-        File dirWar=new File("c:\\java\\war");
-        dirWar.mkdir();
+        File dirWar=new File("c:\\java");
+        System.out.println(dirWar.mkdir());
+        dirWar=new File("c:\\java\\war");
+        System.out.println(dirWar.mkdir());
+        // каталоги нужно создавать поочередно :/
 
         File file = new File("c:\\java\\war\\war.txt");
+
         String url = "https://vk.com/doc354539244_619263533";
         try {
            downloadUsingStream(url, file.getAbsolutePath());
@@ -28,14 +32,15 @@ public class Main {
             e.printStackTrace();
         }
 
-        // 1  чтение байтовой информации
+        // 1  чтение байтовой информации - проблема с кодировкой. нужно использовать ридер.
 
-/*
-        FileInputStream fileInputStream = new FileInputStream("f:\\java\\war\\war.txt");
+        File fileInpStream = new File("c:\\java\\war\\warInputstream.txt");
+        fileInpStream.createNewFile();
+        FileInputStream fileInputStream = new FileInputStream("c:\\java\\war\\warInputstream.txt");
         System.out.printf("File size: %d bytes \n", fileInputStream.available());
 
         InputStreamReader isr = new InputStreamReader(fileInputStream, StandardCharsets.UTF_8);
-        BufferedReader reader = new BufferedReader(isr); // буферридер опционально
+        BufferedReader reader = new BufferedReader(isr); // буферридер опционально можно и не использовать
 
 
         int i = -1;
@@ -45,15 +50,12 @@ public class Main {
         }
         fileInputStream.close();
 
-        // rezult - переменная с текстом война и мир
-
-       */
 
         // 2  чтения текстовой информации, сразу читает текст, в отличие от потока
 
 
-        ArrayList<String>  arrtext = new ArrayList<>();  // имеем полный список слов
-        ArrayList<String>  arrYear = new ArrayList<>();  // имеем полный список дат
+        ArrayList<String>  arrtext = new ArrayList<>();  //для полного список слов
+        ArrayList<String>  arrYear = new ArrayList<>();  // для списка дат
         FileReader reader2 = new FileReader("c:\\java\\war\\war.txt");
         StringBuilder builder = new StringBuilder();
         int c;
@@ -128,7 +130,7 @@ public class Main {
         String kMax="";
         int vMin=100;
         int vMax=0;
-        String wLong="";
+        String wLong=""; // длинное слово
 
         for (String unit: mapTxt.keySet()) {
             if (mapTxt.get(unit)>=vMax) {vMax=mapTxt.get(unit); kMax=unit;}
@@ -166,7 +168,7 @@ Heroes natRostova = new Heroes("Natasha", "Rostova", 18,"female",19);
         URL url = new URL(urlStr);
         BufferedInputStream bis = new BufferedInputStream(url.openStream());
         FileOutputStream fis = new FileOutputStream(file);
-        byte[] buffer = new byte[1024];                                 // записать посимвольно
+        byte[] buffer = new byte[1024];                                 // можно записать посимвольно. опционально
         int count=0;
         while((count = bis.read(buffer,0,1024)) != -1)
         {
