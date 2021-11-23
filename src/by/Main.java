@@ -32,11 +32,11 @@ public class Main {
             e.printStackTrace();
         }
 
-        // 1  чтение байтовой информации - проблема с кодировкой. нужно использовать ридер.
+        // 1  чтение байтовой информации в переменную result  - проблема с кодировкой. нужно использовать ридер.
 
-        File fileInpStream = new File("c:\\java\\war\\warInputstream.txt");
+        File fileInpStream = new File("c:\\java\\war\\war.txt");
         fileInpStream.createNewFile();
-        FileInputStream fileInputStream = new FileInputStream("c:\\java\\war\\warInputstream.txt");
+        FileInputStream fileInputStream = new FileInputStream("c:\\java\\war\\war.txt");
         System.out.printf("File size: %d bytes \n", fileInputStream.available());
 
         InputStreamReader isr = new InputStreamReader(fileInputStream, StandardCharsets.UTF_8);
@@ -51,7 +51,9 @@ public class Main {
         fileInputStream.close();
 
 
-        // 2  чтения текстовой информации, сразу читает текст, в отличие от потока
+
+
+        // 2  чтения текстовой информации в переменную builder, сразу читает текст, в отличие от потока
 
 
         ArrayList<String>  arrtext = new ArrayList<>();  //для полного список слов
