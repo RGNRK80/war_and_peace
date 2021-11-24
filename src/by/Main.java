@@ -62,7 +62,7 @@ public class Main {
         StringBuilder builder = new StringBuilder();
         int c;
 
-        int counter=0;
+        int counter=1;
         while ((c = reader2.read()) != -1) {
             char ch= (char) c;
             if (Character.isLetter(ch)) {
@@ -72,6 +72,7 @@ public class Main {
                 if (counter==0) {
                     arrtext.add(builder.toString());
                     builder.delete(0,builder.length());
+
                     }
                     counter++;
                              }
@@ -103,6 +104,13 @@ public class Main {
             if (mapTxt.containsKey(unit)) {mapTxt.replace(unit,mapTxt.get(unit)+1);} else {mapTxt.put(unit,1);}
 
         }
+
+        // вывод перечня слов в файл для визуальной проверки
+        File filemap=new File("C:/java/war/wartxt.txt");
+        filemap.createNewFile();
+        FileWriter fw = new FileWriter(filemap.getAbsolutePath());
+        fw.write(mapTxt.toString());
+
 
         TreeSet<Integer> sortYear = new TreeSet<>();
         for (String unit: arrYear) {
@@ -155,13 +163,13 @@ Heroes natRostova = new Heroes("Natasha", "Rostova", 18,"female",19);
         objectOutputStream.writeObject(natRostova);
 
         ObjectInputStream objectInputStream=new ObjectInputStream(new FileInputStream("c:\\java\\war\\aboutWar-heroes.txt"));
-        Heroes pierResored = (Heroes) objectInputStream.readObject();
-        Heroes andrResored = (Heroes) objectInputStream.readObject();
-        Heroes natResored = (Heroes) objectInputStream.readObject();
+        Heroes pierRestored = (Heroes) objectInputStream.readObject();
+        Heroes andrRestored = (Heroes) objectInputStream.readObject();
+        Heroes natRestored = (Heroes) objectInputStream.readObject();
 
-        System.out.println(pierResored);
-        System.out.println(andrResored);
-        System.out.println(natResored);
+        System.out.println(pierRestored);
+        System.out.println(andrRestored);
+        System.out.println(natRestored);
 
 
     } // psvm
